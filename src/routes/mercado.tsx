@@ -1,0 +1,2 @@
+import { createFileRoute } from "@tanstack/react-router";import { MarketPage } from "@/pages/MarketPage";
+export const Route=createFileRoute("/mercado")({head:()=>({meta:[{title:"Mercado — MarketSense"},{name:"description",content:"Pesquise, filtre e ordene ativos financeiros."},{property:"og:title",content:"Mercado — MarketSense"},{property:"og:description",content:"Explore a tabela completa de ativos monitorados pelo MarketSense."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:MarketPage});
