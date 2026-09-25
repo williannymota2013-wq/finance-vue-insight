@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
+import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as MercadoRouteImport } from './routes/mercado'
+import { Route as AtivoSymbolRouteImport } from './routes/ativo.$symbol'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FavoritosRoute = FavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MercadoRoute = MercadoRouteImport.update({
+  id: '/mercado',
+  path: '/mercado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtivoSymbolRoute = AtivoSymbolRouteImport.update({
+  id: '/ativo/$symbol',
+  path: '/ativo/$symbol',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/favoritos': typeof FavoritosRoute
+  '/mercado': typeof MercadoRoute
+  '/ativo/$symbol': typeof AtivoSymbolRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/favoritos': typeof FavoritosRoute
+  '/mercado': typeof MercadoRoute
+  '/ativo/$symbol': typeof AtivoSymbolRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/configuracoes': typeof ConfiguracoesRoute
+  '/favoritos': typeof FavoritosRoute
+  '/mercado': typeof MercadoRoute
+  '/ativo/$symbol': typeof AtivoSymbolRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/configuracoes' | '/favoritos' | '/mercado' | '/ativo/$symbol'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/configuracoes' | '/favoritos' | '/mercado' | '/ativo/$symbol'
+  id:
+    | '__root__'
+    | '/'
+    | '/configuracoes'
+    | '/favoritos'
+    | '/mercado'
+    | '/ativo/$symbol'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
+  FavoritosRoute: typeof FavoritosRoute
+  MercadoRoute: typeof MercadoRoute
+  AtivoSymbolRoute: typeof AtivoSymbolRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +95,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/favoritos': {
+      id: '/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof FavoritosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercado': {
+      id: '/mercado'
+      path: '/mercado'
+      fullPath: '/mercado'
+      preLoaderRoute: typeof MercadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ativo/$symbol': {
+      id: '/ativo/$symbol'
+      path: '/ativo/$symbol'
+      fullPath: '/ativo/$symbol'
+      preLoaderRoute: typeof AtivoSymbolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
+  FavoritosRoute: FavoritosRoute,
+  MercadoRoute: MercadoRoute,
+  AtivoSymbolRoute: AtivoSymbolRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
