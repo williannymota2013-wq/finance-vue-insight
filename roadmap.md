@@ -5,4 +5,4 @@
 - [x] Criar componentes reutilizáveis e navegação
 - [x] Criar Dashboard, Mercado, Detalhes, Favoritos e Configurações
 - [x] Documentar execução e futura integração com Python
-- [ ] Validar telas em celular e desktop
+- [x] Validar telas em celular e desktop
