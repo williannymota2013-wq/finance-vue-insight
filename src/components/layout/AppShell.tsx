@@ -2,7 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Bell, ChartNoAxesCombined, Gauge, Heart, Menu, Search, Settings, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { assets } from "@/data/mockMarket";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 const nav = [{to:"/",label:"Dashboard",icon:Gauge},{to:"/mercado",label:"Mercado",icon:ChartNoAxesCombined},{to:"/favoritos",label:"Favoritos",icon:Heart},{to:"/configuracoes",label:"Configurações",icon:Settings}] as const;
 export function AppShell({ children }: { children: ReactNode }) {
  const path = useRouterState({select:s=>s.location.pathname}); const [menu,setMenu]=useState(false); const [search,setSearch]=useState("");

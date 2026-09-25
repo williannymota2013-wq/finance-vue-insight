@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { ArrowDownRight, ArrowUpRight, Star } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useMarket } from "@/context/MarketContext";
 import type { Asset, HistoryPoint } from "@/types/market";
 
