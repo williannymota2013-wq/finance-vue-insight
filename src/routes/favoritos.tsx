@@ -1,0 +1,2 @@
+import { createFileRoute } from "@tanstack/react-router";import { FavoritesPage } from "@/pages/FavoritesPage";
+export const Route=createFileRoute("/favoritos")({head:()=>({meta:[{title:"Favoritos — MarketSense"},{name:"description",content:"Acompanhe seus ativos financeiros favoritos."},{property:"og:title",content:"Favoritos — MarketSense"},{property:"og:description",content:"Sua seleção personalizada de ativos no MarketSense."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:FavoritesPage});
