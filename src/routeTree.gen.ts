@@ -12,8 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as FavoritosRouteImport } from './routes/favoritos'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as McpRouteImport } from './routes/mcp'
 import { Route as MercadoRouteImport } from './routes/mercado'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as AtivoSymbolRouteImport } from './routes/ativo.$symbol'
+import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,14 +34,35 @@ const FavoritosRoute = FavoritosRouteImport.update({
   path: '/favoritos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MercadoRoute = MercadoRouteImport.update({
   id: '/mercado',
   path: '/mercado',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AtivoSymbolRoute = AtivoSymbolRouteImport.update({
   id: '/ativo/$symbol',
   path: '/ativo/$symbol',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
+  id: '/.lovable/oauth/consent',
+  path: '/.lovable/oauth/consent',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -45,45 +70,82 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/configuracoes': typeof ConfiguracoesRoute
   '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mcp': typeof McpRoute
   '/mercado': typeof MercadoRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/ativo/$symbol': typeof AtivoSymbolRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/configuracoes': typeof ConfiguracoesRoute
   '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mcp': typeof McpRoute
   '/mercado': typeof MercadoRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/ativo/$symbol': typeof AtivoSymbolRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/configuracoes': typeof ConfiguracoesRoute
   '/favoritos': typeof FavoritosRoute
+  '/login': typeof LoginRoute
+  '/mcp': typeof McpRoute
   '/mercado': typeof MercadoRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/ativo/$symbol': typeof AtivoSymbolRoute
+  '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/configuracoes' | '/favoritos' | '/mercado' | '/ativo/$symbol'
+    | '/'
+    | '/configuracoes'
+    | '/favoritos'
+    | '/login'
+    | '/mcp'
+    | '/mercado'
+    | '/.well-known/oauth-protected-resource'
+    | '/ativo/$symbol'
+    | '/.lovable/oauth/consent'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/configuracoes' | '/favoritos' | '/mercado' | '/ativo/$symbol'
+  to:
+    | '/'
+    | '/configuracoes'
+    | '/favoritos'
+    | '/login'
+    | '/mcp'
+    | '/mercado'
+    | '/.well-known/oauth-protected-resource'
+    | '/ativo/$symbol'
+    | '/.lovable/oauth/consent'
   id:
     | '__root__'
     | '/'
     | '/configuracoes'
     | '/favoritos'
+    | '/login'
+    | '/mcp'
     | '/mercado'
+    | '/.well-known/oauth-protected-resource'
     | '/ativo/$symbol'
+    | '/.lovable/oauth/consent'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConfiguracoesRoute: typeof ConfiguracoesRoute
   FavoritosRoute: typeof FavoritosRoute
+  LoginRoute: typeof LoginRoute
+  McpRoute: typeof McpRoute
   MercadoRoute: typeof MercadoRoute
+  Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   AtivoSymbolRoute: typeof AtivoSymbolRoute
+  DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +171,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FavoritosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mercado': {
       id: '/mercado'
       path: '/mercado'
       fullPath: '/mercado'
       preLoaderRoute: typeof MercadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ativo/$symbol': {
@@ -123,6 +206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtivoSymbolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/.lovable/oauth/consent': {
+      id: '/.lovable/oauth/consent'
+      path: '/.lovable/oauth/consent'
+      fullPath: '/.lovable/oauth/consent'
+      preLoaderRoute: typeof DotlovableOauthConsentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -130,8 +220,13 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConfiguracoesRoute: ConfiguracoesRoute,
   FavoritosRoute: FavoritosRoute,
+  LoginRoute: LoginRoute,
+  McpRoute: McpRoute,
   MercadoRoute: MercadoRoute,
+  Char91DotwellKnownChar93OauthProtectedResourceRoute:
+    Char91DotwellKnownChar93OauthProtectedResourceRoute,
   AtivoSymbolRoute: AtivoSymbolRoute,
+  DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

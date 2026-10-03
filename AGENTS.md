@@ -11,3 +11,4 @@
 
 - MarketSense mantém dados em `src/data` e acesso assíncrono em `src/services/api.ts`, permitindo trocar mocks pela API Python sem alterar a interface.
 - O estado demonstrativo compartilhado (favoritos e preferências) vive em um contexto React, pois o projeto não terá backend nem persistência nesta fase.
+- MCP server lives in src/lib/mcp (tools read via src/services/api.ts) and is protected by Lovable Cloud OAuth; consent at src/routes/[.]lovable.oauth.consent.tsx, sign-in at /login — so AI clients act as a signed-in user.
