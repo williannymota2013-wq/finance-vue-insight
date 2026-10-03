@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "sdk_version": "3.0.4",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://mqzrievhvktgeyevywjz.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "market-sense-dashboard",
+      "version": "0.1.0",
+      "title": "Market Sense Dashboard"
+    },
+    "tools": [
+      {
+        "name": "list_assets",
+        "title": "Listar ativos",
+        "description": "Lista os ativos demonstrativos do MarketSense, com filtro opcional por categoria.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "category": {
+              "description": "Categoria do ativo.",
+              "type": "string",
+              "enum": [
+                "Ações",
+                "Índices",
+                "Moedas",
+                "Cripto"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "search_assets",
+        "title": "Buscar ativos",
+        "description": "Busca ativos demonstrativos por ticker ou nome.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "term": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Ticker ou parte do nome."
+            }
+          },
+          "required": [
+            "term"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_asset",
+        "title": "Detalhes do ativo",
+        "description": "Retorna preço, abertura, máxima, mínima, volume e histórico de um ativo demonstrativo.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {
+            "symbol": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Ticker, ex.: PETR4."
+            },
+            "period": {
+              "description": "Período do histórico (padrão 1M).",
+              "type": "string",
+              "enum": [
+                "1D",
+                "1S",
+                "1M",
+                "6M",
+                "1A"
+              ]
+            }
+          },
+          "required": [
+            "symbol"
+          ],
+          "additionalProperties": false
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
