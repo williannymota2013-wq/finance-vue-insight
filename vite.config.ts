@@ -6,6 +6,18 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/tanstack/vite";
+import { normalize } from "node:path";
+
+const mcp = mcpPlugin();
+const resolveMcpConfig = mcp.configResolved;
+
+// Vite uses forward slashes on Windows, but the MCP plugin compares its root
+// with node:path results. Normalize only the config passed to that plugin.
+if (process.platform === "win32" && typeof resolveMcpConfig === "function") {
+  mcp.configResolved = function (config) {
+    return resolveMcpConfig.call(this, { ...config, root: normalize(config.root) });
+  };
+}
 
 export default defineConfig({
   tanstackStart: {
@@ -13,5 +25,5 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  vite: { plugins: [mcpPlugin()] },
+  vite: { plugins: [mcp] },
 });

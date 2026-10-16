@@ -49,7 +49,31 @@ Os ativos e seus históricos estão em `src/data/mockMarket.ts`. As interfaces c
 
 ## Como executar localmente
 
-Requisitos: Bun ou Node.js recente.
+Requisito recomendado: Node.js 24 LTS (inclui npm).
+
+No PowerShell, abra a pasta do projeto e execute:
+
+```powershell
+cd C:\Users\gh360\finance-vue-insight
+npm install
+npm run dev
+```
+
+Mantenha o terminal aberto enquanto usa a aplicação. Para encerrar, pressione `Ctrl+C`.
+Nas próximas execuções, basta usar `npm run dev`; repita `npm install` quando as dependências mudarem.
+O endereço padrão é `http://localhost:8080`. Se a porta estiver ocupada, o Vite informa outra porta no terminal. O `package-lock.json` permite reinstalar as mesmas versões com `npm ci`.
+
+O arquivo `.env` existente contém a configuração pública do Supabase/Lovable usada pelo login e pelo MCP. Para usar outra configuração apenas nesta máquina, crie um `.env.local` (ignorado pelo Git) com as variáveis correspondentes e reinicie o servidor. Nunca coloque chaves privadas em variáveis `VITE_*`.
+
+O dashboard usa dados demonstrativos em `src/data`, acessados por `src/services/api.ts`. Não é necessário instalar Python, iniciar o diretório `backend` ou configurar um banco de dados para usar essas telas. Login e MCP dependem do serviço remoto do Supabase/Lovable.
+
+Para verificar a geração do build de produção (destinado à hospedagem):
+
+```powershell
+npm run build
+```
+
+Se preferir Bun:
 
 ```bash
 bun install
